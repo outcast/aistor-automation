@@ -12,6 +12,7 @@ fi
 
 export AISTOR_PREFIX="minio/aistor/"
 export MINIO_PREFIX="minio/"
+export MINIO_LICENSE="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 
 
-helm show values aistor/operators | yq '.repositories.aistor.hostname = strenv(REPO_HOST) | .repositories.aistor.pathPrefix = strenv(AISTOR_PREFIX) | .repositories.minio.hostname = strenv(REPO_HOST) | .repositories.minio.pathPrefix = strenv(MINIO_PREFIX)'
+helm show values aistor/operators | yq '.repositories.aistor.hostname = strenv(REPO_HOST) | .repositories.aistor.pathPrefix = strenv(AISTOR_PREFIX) | .repositories.minio.hostname = strenv(REPO_HOST) | .repositories.minio.pathPrefix = strenv(MINIO_PREFIX) | .global.license = strenv(MINIO_LICENSE)'
