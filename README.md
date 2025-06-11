@@ -7,6 +7,7 @@
 2. create namespaces `aistor` and <object store name>
 3. create image pull secrets for both namespaces with same name
 4. export `PULL_SECRET` with name of the pull secret you created
+5. export your minio license ie `export MINIO_LICENSE="AAAAAAAAAAA"`
 5. If not using the default image project paths export them
    1. `export AISTOR_PREFIX=aistor/`
    2. `export MINIO_PREFIX=minio/`
