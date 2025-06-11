@@ -11,10 +11,6 @@ if [[ -z "$AISTOR_CACHE_DIR" ]]; then
     AISTOR_CACHE_DIR="/tmp/aistor/cache"
 fi
 
-if [[ -z "$IMAGE_PROJECT" ]]; then
-    IMAGE_PROJECT="aistor"
-fi
-
 function check_command() {
   local cmd=$1
   if ! command -v "$cmd" &> /dev/null; then
@@ -64,8 +60,6 @@ function is_aistor_operators_cached() {
 
 function aistor_airgap_sync() {
     local new_repo=$1
-    local image_project=$IMAGE_PROJECT
-    #local image_project
     
     if [[ -z "$new_repo" ]]; then
         echo "Usage: aistor_airgap_sync <new_repo>"
@@ -96,10 +90,9 @@ function aistor_airgap_sync() {
 
 function directpv_airgap_sync() {
     local new_repo=$1
-    local image_project=$2
     
     if [[ -z "$new_repo" ]]; then
-        echo "Usage: directpv_sync <new_repo> [image_project]"
+        echo "Usage: directpv_sync <new_repo>"
         return 1
     fi
     
@@ -107,9 +100,7 @@ function directpv_airgap_sync() {
         IFS='/' read -r -a image_parts <<< "${image//@//}"
         image_name=${image_parts[$((${#image_parts[@]} - 2))]}
         image_tag=${image_parts[$((${#image_parts[@]} - 1))]}
-        if [[ -z "$image_project" ]]; then
-            image_project="directpv"
-        fi
+       
         echo $image ${image_parts[1]} ${repositories["${image_parts[1]}"]} ${repositories["${image_parts[1]}"]}/$image_name:${image_tag//\"/}
         echo skopeo_sync $image $new_repo/${image_parts[1]}/$image_name:latest
         # docker pull $image
