@@ -46,6 +46,14 @@ export OBJS_VOLUME_COUNT
 export OBJS_VOLUME_CAPACITY
 export OBJS_VOLUME_STORAGE_CLASS
 
+#print usage
+if [[ $1 == "-h" ]]; then
+  echo "Usage: $0 <object-store-name> <pool-name> <server-count> <volume-count> <volume-capacity> <volume-storage-class>"
+  echo "Example: $0 object-store pool-0 1 1 1Gi standard"
+  exit 1
+fi
+
+
 echo "## Generating object store values with the following parameters:"
 echo "##  Object Store Name: $OBJS_NAME"
 echo "##  Pool Name: $OBJS_POOL_NAME"
