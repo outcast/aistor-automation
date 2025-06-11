@@ -16,4 +16,4 @@
 8. run `helm upgrade -i -n aistor --create-namespace aistor-operators aistor/operators -f operators-values.yaml`
 9. run `gen-objectstore-values.sh <object-store-name> <pool-name> <server-count> <volume-count> <volume-capacity> <volume-storage-class> > objectstore-values.yaml`
 10. verify `objectstore-values.yaml` is correct
-11. run `helm upgrade -i -n <name of object store> --create-namespace aistor-operators aistor/operators -f operators-values.yaml`
+11. run `helm upgrade -i -n <name of object store> --create-namespace object-store aistor/object-store -f objectstore-values.yaml`
